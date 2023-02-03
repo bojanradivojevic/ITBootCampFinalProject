@@ -1,8 +1,6 @@
 package Tests;
 
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.SignupPage;
+import Pages.*;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +17,8 @@ public abstract class BaseTests {
     HomePage homePage;
     LoginPage loginPage;
     SignupPage signupPage;
+    AdminCitiesPage adminCitiesPage;
+    LocalePage localePage;
     Faker faker;
 
     @BeforeClass
@@ -31,6 +31,8 @@ public abstract class BaseTests {
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
         signupPage = new SignupPage(driver);
+        adminCitiesPage = new AdminCitiesPage(driver);
+        localePage = new LocalePage(driver);
     }
 
     @BeforeMethod
