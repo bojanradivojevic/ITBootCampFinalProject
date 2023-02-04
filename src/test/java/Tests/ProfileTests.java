@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class ProfileTests extends BaseTests {
 
     @Test
-    private void editsProfile() {
+    public void editsProfile() {
         homePage.openSignupPage();
         signupPage.fillInTheSignupFields(faker.name().name(), faker.internet().emailAddress(), "123456", "123456");
         profilePage.selectProfileButton();
@@ -16,7 +16,6 @@ public class ProfileTests extends BaseTests {
             throw new RuntimeException(e);
         }
         profilePage.fillTheProfileForm(faker.phoneNumber().phoneNumber(), "Chicago", faker.address().country());
-        String expectedMessage = "Profile saved successfuly";
 
         try {
             Thread.sleep(4000);

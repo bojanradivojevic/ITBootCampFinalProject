@@ -31,13 +31,82 @@ public class AdminCitiesTests extends BaseTests {
         adminCitiesPage.clickAdminMenuButton();
         adminCitiesPage.selectCities();
         adminCitiesPage.createNewItem(faker.address().cityName());
-        String expectedMessage = "Saved successfully";
+
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+        // expectedMessage = "Saved successfully";
         Assert.assertTrue(adminCitiesPage.getMessageSavedSuccessfully());
+        adminCitiesPage.logout();
+    }
+
+    @Test
+    public void editCity() {
+        String newCity = faker.address().cityName();
+        homePage.openLoginPage();
+        loginPage.fillInTheLoginFields("admin@admin.com", "12345");
+        adminCitiesPage.clickAdminMenuButton();
+        adminCitiesPage.selectCities();
+        adminCitiesPage.createNewItem(newCity);
+        adminCitiesPage.editCity(newCity);
+
+        // expectedMessage = "Saved successfully";
+        Assert.assertTrue(adminCitiesPage.getMessageSavedSuccessfully());
+        adminCitiesPage.logout();
+    }
+
+    @Test
+    public void searchCity() {
+        String newCity = faker.address().cityName();
+        homePage.openLoginPage();
+        loginPage.fillInTheLoginFields("admin@admin.com", "12345");
+        adminCitiesPage.clickAdminMenuButton();
+        adminCitiesPage.selectCities();
+        adminCitiesPage.createNewItem(newCity);
+        adminCitiesPage.editCity(newCity);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        adminCitiesPage.searchCity(newCity);
+
+        // expectedResult: String newCity is in the list of cities.
+        Assert.assertTrue(adminCitiesPage.getCitiesListElement(newCity));
+        adminCitiesPage.logout();
+    }
+
+    @Test
+    public void deleteCity() {
+        String newCity = faker.address().cityName();
+        homePage.openLoginPage();
+        loginPage.fillInTheLoginFields("admin@admin.com", "12345");
+        adminCitiesPage.clickAdminMenuButton();
+        adminCitiesPage.selectCities();
+        adminCitiesPage.createNewItem(newCity);
+
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        adminCitiesPage.searchCity(newCity);
+        adminCitiesPage.deleteCity();
+
+        // expectedResult: String newCity is in the list of cities.
+        Assert.assertTrue(adminCitiesPage.getCitiesListElement(newCity));
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        // expectedMessage = "Deleted successfully";
+        Assert.assertTrue(adminCitiesPage.getMessageDeletedSuccessfully());
         adminCitiesPage.logout();
     }
 }
