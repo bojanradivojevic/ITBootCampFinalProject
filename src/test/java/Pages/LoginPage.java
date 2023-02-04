@@ -29,11 +29,11 @@ public class LoginPage extends BasePage {
         return this.password.getAttribute("type");
     }
 
-    public String getErrorMessage_UserDoesNotExists() {
+    public String getErrorMessageUserDoesNotExists() {
         return this.errorMessage_UserDoesNotExists.getText();
     }
 
-    public String getErrorMessage_WrongPassword() {
+    public String getErrorMessageWrongPassword() {
         return this.errorMessage_WrongPassword.getText();
     }
 

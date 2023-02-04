@@ -33,7 +33,7 @@ public class LoginTests extends BaseTests {
         loginPage.fillInTheLoginFields(fakeEmail, fakePassword);
         String expectedMessage = "User does not exists";
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
-        Assert.assertEquals(loginPage.getErrorMessage_UserDoesNotExists(), expectedMessage);
+        Assert.assertEquals(loginPage.getErrorMessageUserDoesNotExists(), expectedMessage);
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
     }
 
@@ -43,7 +43,7 @@ public class LoginTests extends BaseTests {
         loginPage.fillInTheLoginFields(email, faker.internet().password());
         String expectedMessage = "Wrong password";
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
-        Assert.assertEquals(loginPage.getErrorMessage_WrongPassword(), expectedMessage);
+        Assert.assertEquals(loginPage.getErrorMessageWrongPassword(), expectedMessage);
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
     }
 
@@ -58,6 +58,7 @@ public class LoginTests extends BaseTests {
             throw new RuntimeException(e);
         }
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
+        homePage.logout();
     }
 
     @Test

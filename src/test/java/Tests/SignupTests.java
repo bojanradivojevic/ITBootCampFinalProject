@@ -1,5 +1,6 @@
 package Tests;
 
+import com.sun.tracing.dtrace.DependencyClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -35,7 +36,7 @@ public class SignupTests extends BaseTests{
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
     }
 
-    @Test
+    @Test(dependsOnMethods = "visitsTheSignupPage")
     public void signUp() {
         homePage.openSignupPage();
         signupPage.fillInTheSignupFields("Bojan Radivojevic", faker.internet().emailAddress(), "bojan", "bojan");
@@ -47,6 +48,12 @@ public class SignupTests extends BaseTests{
             throw new RuntimeException(e);
         }
         Assert.assertEquals(signupPage.getMessageVerifyYourAccount(), expectedMessage);
+        signupPage.closeButtonClick();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        homePage.logout();
     }
-
 }

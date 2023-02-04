@@ -21,6 +21,9 @@ public class SignupPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button/span")
     private WebElement signMeUpButton;
 
+    @FindBy(className = "btnClose")
+    private WebElement closeButton;
+
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/ul/li")
     private WebElement errorMessageEmailAlreadyExists;
 
@@ -59,6 +62,10 @@ public class SignupPage extends BasePage{
         this.confirmPassword.sendKeys(confirmPassword);
 
         this.signMeUpButton.click();
+    }
+
+    public void closeButtonClick() {
+        this.closeButton.click();
     }
 
     public SignupPage(WebDriver driver) {
