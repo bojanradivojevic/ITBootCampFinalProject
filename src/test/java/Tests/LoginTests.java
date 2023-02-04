@@ -69,5 +69,8 @@ public class LoginTests extends BaseTests {
         homePage.logout();
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
+        driver.get("https://vue-demo.daniel-avellaneda.com/home");
+        String expectedUrl = "https://vue-demo.daniel-avellaneda.com/login";
+        Assert.assertEquals(loginPage.getUrlPage(), expectedUrl);
     }
 }
