@@ -19,6 +19,7 @@ public abstract class BaseTests {
     SignupPage signupPage;
     AdminCitiesPage adminCitiesPage;
     LocalePage localePage;
+    ProfilePage profilePage;
     Faker faker;
 
     @BeforeClass
@@ -33,6 +34,7 @@ public abstract class BaseTests {
         signupPage = new SignupPage(driver);
         adminCitiesPage = new AdminCitiesPage(driver);
         localePage = new LocalePage(driver);
+        profilePage = new ProfilePage(driver);
     }
 
     @BeforeMethod
