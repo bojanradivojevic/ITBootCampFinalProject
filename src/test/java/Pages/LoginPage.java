@@ -16,13 +16,13 @@ public class LoginPage extends BasePage {
     private WebElement loginButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
-    private WebElement errorMessage_UserDoesNotExists;
+    private WebElement errorMessageUserDoesNotExists;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")
-    private WebElement errorMessage_WrongPassword;
+    private WebElement errorMessageWrongPassword;
 
     public String getEmailFieldType() {
-       return this.email.getAttribute("type");
+        return this.email.getAttribute("type");
     }
 
     public String getPasswordFieldType() {
@@ -30,11 +30,11 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorMessageUserDoesNotExists() {
-        return this.errorMessage_UserDoesNotExists.getText();
+        return this.errorMessageUserDoesNotExists.getText();
     }
 
     public String getErrorMessageWrongPassword() {
-        return this.errorMessage_WrongPassword.getText();
+        return this.errorMessageWrongPassword.getText();
     }
 
     public void fillInTheLoginFields(String email, String password) {

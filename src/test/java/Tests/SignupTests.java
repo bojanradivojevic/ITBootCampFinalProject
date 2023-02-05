@@ -1,10 +1,14 @@
 package Tests;
 
 import com.sun.tracing.dtrace.DependencyClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SignupTests extends BaseTests{
+import java.time.Duration;
+
+public class SignupTests extends BaseTests {
 
     @Test
     public void visitsTheSignupPage() {
@@ -40,20 +44,17 @@ public class SignupTests extends BaseTests{
     public void signUp() {
         homePage.openSignupPage();
         signupPage.fillInTheSignupFields("Bojan Radivojevic", faker.internet().emailAddress(), "bojan", "bojan");
-        String expectedMessage = "IMPORTANT: Verify your account";
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        String expectedMessage = "IMPORTANT: Verify your account";
         Assert.assertEquals(signupPage.getMessageVerifyYourAccount(), expectedMessage);
+
         signupPage.closeButtonClick();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/h1")));
         homePage.logout();
     }
 }

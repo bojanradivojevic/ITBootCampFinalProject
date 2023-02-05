@@ -1,5 +1,7 @@
 package Tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -28,9 +30,7 @@ public class LoginTests extends BaseTests {
     @Test
     public void displeysErrorsWhenUserDoesNotExist() {
         homePage.openLoginPage();
-        String fakeEmail = faker.internet().emailAddress();
-        String fakePassword = faker.internet().password();
-        loginPage.fillInTheLoginFields(fakeEmail, fakePassword);
+        loginPage.fillInTheLoginFields(faker.internet().emailAddress(), faker.internet().password());
         String expectedMessage = "User does not exists";
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
         Assert.assertEquals(loginPage.getErrorMessageUserDoesNotExists(), expectedMessage);
@@ -51,12 +51,8 @@ public class LoginTests extends BaseTests {
     public void login() {
         homePage.openLoginPage();
         loginPage.fillInTheLoginFields(email, password);
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/h1")));
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/home";
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
         homePage.logout();
     }
@@ -66,8 +62,8 @@ public class LoginTests extends BaseTests {
         homePage.openLoginPage();
         loginPage.fillInTheLoginFields(email, password);
         Assert.assertTrue(homePage.logoutButtonIsVisible());
-
         homePage.logout();
+
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
         driver.get("https://vue-demo.daniel-avellaneda.com/home");

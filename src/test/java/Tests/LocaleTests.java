@@ -8,21 +8,21 @@ public class LocaleTests extends BaseTests {
     @Test
     public void setLocaleToEs() {
         localePage.selectEs();
-        String expectetText = "Página de aterrizaje";
-        Assert.assertEquals(localePage.getHeader(), expectetText);
+        String expectedText = "Página de aterrizaje";
+        Assert.assertEquals(localePage.getHeader(), expectedText);
     }
 
     @Test(dependsOnMethods = "setLocaleToEs")
     public void setLocaleToEn() {
         localePage.selectEn();
-        String expectetText = "Landing";
-        Assert.assertEquals(localePage.getHeader(), expectetText);
+        String expectedText = "Landing";
+        Assert.assertEquals(localePage.getHeader(), expectedText);
     }
 
     @Test
     public void setLocaleToFr() {
         localePage.selectFr();
-        String expectetText = "Page d'atterrissage";
-        Assert.assertEquals(localePage.getHeader(), expectetText);
+        String expectedText = "Page d'atterrissage";
+        Assert.assertEquals(localePage.getHeader(), expectedText);
     }
 }

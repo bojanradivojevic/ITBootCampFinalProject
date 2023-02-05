@@ -71,9 +71,11 @@ public class AdminCitiesPage extends BasePage {
     public boolean getMessageSavedSuccessfully() {
         return this.messageSavedSuccessfully.getText().contains("Saved successfully");
     }
+
     public boolean getMessageDeletedSuccessfully() {
         return this.messageDeletedSuccessfully.getText().contains("Deleted successfully");
     }
+
     public void editCity(String newCity) {
         this.editButton.click();
         this.nameOfTheNewCity.sendKeys(Keys.SPACE);
@@ -84,6 +86,7 @@ public class AdminCitiesPage extends BasePage {
     }
 
     public void searchCity(String city) {
+        this.searchInputField.click();
         this.searchInputField.sendKeys(Keys.CONTROL + "a");
         this.searchInputField.sendKeys(city);
         this.searchInputField.sendKeys(Keys.ENTER);
@@ -101,6 +104,7 @@ public class AdminCitiesPage extends BasePage {
         }
         return true;
     }
+
     public AdminCitiesPage(WebDriver driver) {
         super(driver);
     }

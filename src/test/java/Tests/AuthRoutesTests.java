@@ -3,7 +3,7 @@ package Tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AuthRoutesTests extends BaseTests{
+public class AuthRoutesTests extends BaseTests {
 
     @Test
     public void forbidsVisitsToHomeUrlIfNotAuthenticated() {
@@ -32,5 +32,4 @@ public class AuthRoutesTests extends BaseTests{
         String expectedUrl = "https://vue-demo.daniel-avellaneda.com/login";
         Assert.assertEquals(loginPage.getUrlPage(), expectedUrl);
     }
-
 }

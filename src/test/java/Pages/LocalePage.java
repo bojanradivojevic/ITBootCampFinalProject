@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LocalePage extends BasePage{
+public class LocalePage extends BasePage {
 
     @FindBy(className = "btnLocaleActivation")
     private WebElement localeActivationButton;

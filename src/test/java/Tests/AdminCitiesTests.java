@@ -1,25 +1,23 @@
 package Tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class AdminCitiesTests extends BaseTests {
 
     @Test
     public void VisitsTheAdminCitiesPageAndListCities() {
-           homePage.openLoginPage();
-           loginPage.fillInTheLoginFields("admin@admin.com", "12345");
-           adminCitiesPage.clickAdminMenuButton();
-           adminCitiesPage.selectCities();
-           String expectedResult = "https://vue-demo.daniel-avellaneda.com/admin/cities";
+        homePage.openLoginPage();
+        loginPage.fillInTheLoginFields("admin@admin.com", "12345");
+        adminCitiesPage.clickAdminMenuButton();
+        adminCitiesPage.selectCities();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]")));
 
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        String expectedResult = "https://vue-demo.daniel-avellaneda.com/admin/cities";
         Assert.assertEquals(loginPage.getUrlPage(), expectedResult);
         adminCitiesPage.logout();
     }
@@ -31,12 +29,6 @@ public class AdminCitiesTests extends BaseTests {
         adminCitiesPage.clickAdminMenuButton();
         adminCitiesPage.selectCities();
         adminCitiesPage.createNewItem(faker.address().cityName());
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         // expectedMessage = "Saved successfully";
         Assert.assertTrue(adminCitiesPage.getMessageSavedSuccessfully());
@@ -67,11 +59,6 @@ public class AdminCitiesTests extends BaseTests {
         adminCitiesPage.selectCities();
         adminCitiesPage.createNewItem(newCity);
         adminCitiesPage.editCity(newCity);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         adminCitiesPage.searchCity(newCity);
 
         // expectedResult: String newCity is in the list of cities.
@@ -87,21 +74,13 @@ public class AdminCitiesTests extends BaseTests {
         adminCitiesPage.clickAdminMenuButton();
         adminCitiesPage.selectCities();
         adminCitiesPage.createNewItem(newCity);
-
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         adminCitiesPage.searchCity(newCity);
         adminCitiesPage.deleteCity();
 
         // expectedResult: String newCity is in the list of cities.
         Assert.assertTrue(adminCitiesPage.getCitiesListElement(newCity));
-
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

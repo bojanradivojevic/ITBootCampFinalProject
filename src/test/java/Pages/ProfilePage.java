@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class ProfilePage extends BasePage{
+public class ProfilePage extends BasePage {
 
     @FindBy(className = "success")
     private WebElement messageProfileSavedSuccessfuly;
@@ -35,14 +35,12 @@ public class ProfilePage extends BasePage{
     @FindBy(className = "btnSave")
     private WebElement saveButton;
 
-    public void fillTheProfileForm(String phone,String city, String country) {
-        this.phoneNumber.clear();
-        this.country.clear();
-
+    public void fillTheProfileForm(String phone, String city, String country) {
+        //this.phoneNumber.clear();
+        //this.country.clear();
+        this.phoneNumber.click();
         this.phoneNumber.sendKeys(phone);
         this.country.sendKeys(country);
-        //Select selectCity = new Select(this.city);
-        //selectCity.selectByVisibleText("Oakland");
         this.city.sendKeys(Keys.SPACE);
         this.city.sendKeys(Keys.CONTROL + "a");
         this.city.sendKeys(city);
@@ -60,15 +58,15 @@ public class ProfilePage extends BasePage{
     }
 
     public boolean geInputFieldsTypeProfileForm(String nameValueAtt, String phoneValueAtt, String cityValueAtt,
-                                               String countryValueAtt, String twitterValueAtt, String gitHubValueAtt ) {
-         this.name.getAttribute("type").equals(nameValueAtt);
-         this.phoneNumber.getAttribute("type").equals(phoneValueAtt);
-         this.city.getAttribute("type").equals(cityValueAtt);
-         this.country.getAttribute("type").equals(countryValueAtt);
-         this.twitterUrl.getAttribute("type").equals(twitterValueAtt);
-         this.gitHubUrl.getAttribute("type").equals(gitHubValueAtt);
+                                                String countryValueAtt, String twitterValueAtt, String gitHubValueAtt) {
+        this.name.getAttribute("type").equals(nameValueAtt);
+        this.phoneNumber.getAttribute("type").equals(phoneValueAtt);
+        this.city.getAttribute("type").equals(cityValueAtt);
+        this.country.getAttribute("type").equals(countryValueAtt);
+        this.twitterUrl.getAttribute("type").equals(twitterValueAtt);
+        this.gitHubUrl.getAttribute("type").equals(gitHubValueAtt);
 
-         return true;
+        return true;
     }
 
     public ProfilePage(WebDriver driver) {
