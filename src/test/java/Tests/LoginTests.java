@@ -22,7 +22,6 @@ public class LoginTests extends BaseTests {
         homePage.openLoginPage();
         String expectedEmailType = "email";
         String expectedPasswordType = "password";
-
         Assert.assertEquals(loginPage.getEmailFieldType(), expectedEmailType);
         Assert.assertEquals(loginPage.getPasswordFieldType(), expectedPasswordType);
     }

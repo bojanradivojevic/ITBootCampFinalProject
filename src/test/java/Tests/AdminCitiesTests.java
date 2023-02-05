@@ -79,11 +79,7 @@ public class AdminCitiesTests extends BaseTests {
 
         // expectedResult: String newCity is in the list of cities.
         Assert.assertTrue(adminCitiesPage.getCitiesListElement(newCity));
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
         // expectedMessage = "Deleted successfully";
         Assert.assertTrue(adminCitiesPage.getMessageDeletedSuccessfully());
         adminCitiesPage.logout();

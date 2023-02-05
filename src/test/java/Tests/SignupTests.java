@@ -1,12 +1,10 @@
 package Tests;
 
-import com.sun.tracing.dtrace.DependencyClass;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class SignupTests extends BaseTests {
 
@@ -45,11 +43,6 @@ public class SignupTests extends BaseTests {
         homePage.openSignupPage();
         signupPage.fillInTheSignupFields("Bojan Radivojevic", faker.internet().emailAddress(), "bojan", "bojan");
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         String expectedMessage = "IMPORTANT: Verify your account";
         Assert.assertEquals(signupPage.getMessageVerifyYourAccount(), expectedMessage);
 

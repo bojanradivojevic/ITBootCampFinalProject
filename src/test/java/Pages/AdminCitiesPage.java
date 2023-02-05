@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 import java.util.List;
 
 public class AdminCitiesPage extends BasePage {
@@ -33,9 +34,6 @@ public class AdminCitiesPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
     private WebElement messageDeletedSuccessfully;
-
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr")
-    private WebElement citiesList;
 
     @FindBy(xpath = "//*[@id=\"edit\"]")
     private WebElement editButton;
@@ -73,6 +71,11 @@ public class AdminCitiesPage extends BasePage {
     }
 
     public boolean getMessageDeletedSuccessfully() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return this.messageDeletedSuccessfully.getText().contains("Deleted successfully");
     }
 
@@ -100,9 +103,11 @@ public class AdminCitiesPage extends BasePage {
     public boolean getCitiesListElement(String city) {
         List<WebElement> cities = driver.findElements(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr"));
         for (int i = 0; i < cities.size(); i++) {
-            cities.get(i).getText().contains(city);
+            if(cities.get(i).getText().contains(city)){
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public AdminCitiesPage(WebDriver driver) {

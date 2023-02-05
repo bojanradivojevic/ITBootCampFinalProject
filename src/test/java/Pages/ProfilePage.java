@@ -4,7 +4,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
 public class ProfilePage extends BasePage {
 
@@ -36,8 +35,6 @@ public class ProfilePage extends BasePage {
     private WebElement saveButton;
 
     public void fillTheProfileForm(String phone, String city, String country) {
-        //this.phoneNumber.clear();
-        //this.country.clear();
         this.phoneNumber.click();
         this.phoneNumber.sendKeys(phone);
         this.country.sendKeys(country);
@@ -54,19 +51,25 @@ public class ProfilePage extends BasePage {
     }
 
     public boolean getMessageProfileSavedSuccessfuly() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return this.messageProfileSavedSuccessfuly.getText().contains("Profile saved successfuly");
     }
 
     public boolean geInputFieldsTypeProfileForm(String nameValueAtt, String phoneValueAtt, String cityValueAtt,
                                                 String countryValueAtt, String twitterValueAtt, String gitHubValueAtt) {
-        this.name.getAttribute("type").equals(nameValueAtt);
-        this.phoneNumber.getAttribute("type").equals(phoneValueAtt);
-        this.city.getAttribute("type").equals(cityValueAtt);
-        this.country.getAttribute("type").equals(countryValueAtt);
-        this.twitterUrl.getAttribute("type").equals(twitterValueAtt);
-        this.gitHubUrl.getAttribute("type").equals(gitHubValueAtt);
-
-        return true;
+        if(
+        this.name.getAttribute("type").equals(nameValueAtt) &&
+        this.phoneNumber.getAttribute("type").equals(phoneValueAtt) &&
+        this.city.getAttribute("type").equals(cityValueAtt) &&
+        this.country.getAttribute("type").equals(countryValueAtt) &&
+        this.twitterUrl.getAttribute("type").equals(twitterValueAtt) &&
+        this.gitHubUrl.getAttribute("type").equals(gitHubValueAtt)
+        ) { return true;}
+        else {return false;}
     }
 
     public ProfilePage(WebDriver driver) {
